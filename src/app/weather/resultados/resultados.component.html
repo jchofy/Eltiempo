@@ -2,9 +2,22 @@
     <div class="d-flex justify-content-center">
         
         <div class="tarjeta w-75 p-3 mb-3 text-center text-light  busquedaPrincipal">
-            <img width="40%" src="http://openweathermap.org/img/wn/{{busqueda.weather[0].icon}}@2x.png" alt="">
-            <p>{{busqueda.name}}<br><h1 class="text-warning ms-1">{{convierteGrados(busqueda.main.temp)}}ºC</h1></p>
+            <img width="35%" src="http://openweathermap.org/img/wn/{{busqueda.weather[0].icon}}@2x.png" alt="">
+            <p>{{busqueda.name}}<br>{{busqueda.weather[0].description}}<br><h1 class="text-warning ms-1">{{convierteGrados(busqueda.main.temp)}}ºC</h1></p>
+ 
+            <p class="text-center">Mínima: {{convierteGrados(busqueda.main.temp_min)}}ºC - Máxima: {{convierteGrados(busqueda.main.temp_max)}}ºC<br>Sensación térmica: {{convierteGrados(busqueda.main.feels_like)}}ºC</p>
+        
+
+            <div class="datos">
+                <p class="text-center">{{busqueda.wind.speed}} km/h({{busqueda.wind.deg}}º)<br>Humedad: {{busqueda.main.humidity}}%<br>Presión: {{busqueda.main.pressure}}Pa</p>
+            </div>
+    
+                <p>(Latitud: {{busqueda.coord.lat}} - Longitud: {{busqueda.coord.lon}})</p>
+              
             <p>{{obtenerFecha()}}</p>
+            <div class="d-flex justify-content-center w-100">
+                <button type="button" class="btn btn-warning mb-2 w-75">Ver predicciones</button>
+            </div>
         </div>
         
     </div>
