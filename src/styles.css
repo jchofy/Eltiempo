@@ -1,0 +1,5 @@
+/*Apreció un espacio en blanco a la derecha de la página y con ello apareció la barra de scroll horizontal
+Para solucionarlo hago lo siguiente- >*/
+.row {
+    --bs-gutter-x: 0em;}
+/*<-----------------------------------*/

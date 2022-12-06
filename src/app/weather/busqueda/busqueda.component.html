@@ -1,0 +1,8 @@
+<div class="d-flex justify-content-center">
+    <span class="p-float-label d-flex w-75">
+        <input (keydown.enter)="buscar(texto.value)" #texto id="float-input" class="w-100" type="text" pInputText> 
+        <label for="float-input">Busca una ciudad</label>
+        <button (click)="buscar(texto.value)" type="button" class="btn btn-primary ms-1">Buscar</button>
+    </span>
+</div>
+
