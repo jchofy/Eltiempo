@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherservicesService } from '../services/weather.service';
 
+
 @Component({
   selector: 'app-resultados',
   templateUrl: './resultados.component.html',
@@ -22,6 +23,17 @@ export class ResultadosComponent implements OnInit {
 
   convierteGrados(gradosF:Number | any){
     return (gradosF-273).toFixed(2);
+  }
+
+  primeraLetramayuscula(cadena:string):string{
+    let cadenaOriginal = cadena;
+    let primeraLetra = cadena.substring(0,1);
+    return primeraLetra.toUpperCase()+cadenaOriginal.slice(1)
+  }
+
+  cambiaImagen(numero:string):string{
+    let cadena = "../../../assets/Iconos/"+numero+".png";
+    return cadena;
   }
 
   cargadatos(){

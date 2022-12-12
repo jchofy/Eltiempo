@@ -12,13 +12,25 @@ export class BusquedaComponent {
   }
 
 busqueda:any="";
+
+errorBusqueda:boolean=false;
+
 busquedasPueblos:any[]=[];
 
 
-buscar(texto:string){
-    this.weatherService.buscar(texto).subscribe((respuesta:any)=>{ 
+buscar(texto:HTMLInputElement){
+  this.errorBusqueda=false;
+    this.weatherService.buscar(texto.value.trim()).subscribe((respuesta:any)=>{ 
     this.weatherService.busqueda=respuesta;
-    console.log(this.weatherService.busqueda);
-   });
+    },(error:any)=>{
+      this.errorBusqueda=true;
+      this.weatherService.busqueda=null;
+     })
+     texto.value=""
+     
 }
+
+
+
+
 }

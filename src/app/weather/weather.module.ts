@@ -7,6 +7,7 @@ import { ResultadosComponent } from './resultados/resultados.component';
 import { SharedModule } from '../shared/shared.module';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
+import {CarouselModule} from 'primeng/carousel';
 
 
 
@@ -21,7 +22,8 @@ import {ButtonModule} from 'primeng/button';
     CommonModule,
     SharedModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    CarouselModule
   ],exports:[
     MainPageComponent
   ]
