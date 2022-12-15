@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {CarouselModule} from 'primeng/carousel';
+import {RouterModule } from '@angular/router';
 
 
 
@@ -23,7 +24,8 @@ import {CarouselModule} from 'primeng/carousel';
     SharedModule,
     InputTextModule,
     ButtonModule,
-    CarouselModule
+    CarouselModule,
+    RouterModule
   ],exports:[
     MainPageComponent
   ]

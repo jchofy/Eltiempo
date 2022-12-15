@@ -1,4 +1,6 @@
 import { Component,OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Weather } from '../interface/weather';
 import { WeatherservicesService } from '../services/weather.service';
 
 @Component({
@@ -9,11 +11,18 @@ import { WeatherservicesService } from '../services/weather.service';
 
 export class InformacionDetalladaComponent implements OnInit {
   dia:string="";
+  busquedaDetallada:any;
 
-  constructor(private weatherService:WeatherservicesService) {  
+  constructor(private weatherService:WeatherservicesService,private activeRouting:ActivatedRoute) {  
   }
 
   ngOnInit() {
+    this.activeRouting.params.subscribe(({nombre})=>{
+      this.weatherService.buscarDetalles(nombre).subscribe((respuesta)=>{
+        this.busquedaDetallada=respuesta;
+        console.log(this.busquedaDetallada)
+      })
+  })
   
   }
 

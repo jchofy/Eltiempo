@@ -9,3 +9,5 @@
 .busquedaPrincipal{
     min-height: 50vh;
 }
+
+a:link, a:visited, a:active {    text-decoration:none;}

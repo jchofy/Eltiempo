@@ -13,6 +13,10 @@ const routes: Routes = [
     component:InformacionDetalladaComponent
   },
   {
+    path:"informaciondetallada/:nombre",
+    component:InformacionDetalladaComponent
+  },
+  {
     path:"**",
     redirectTo:""
   },
