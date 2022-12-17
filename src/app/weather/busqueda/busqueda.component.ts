@@ -19,15 +19,22 @@ busquedasPueblos:any[]=[];
 
 
 buscar(texto:HTMLInputElement){
+  this.weatherService.buscandoSpinner=true;
   this.errorBusqueda=false;
     this.weatherService.buscar(texto.value.trim()).subscribe((respuesta:any)=>{ 
+      this.weatherService.buscandoSpinner=false;
     this.weatherService.busqueda=respuesta;
     },(error:any)=>{
+      this.weatherService.buscandoSpinner=false;
       this.errorBusqueda=true;
       this.weatherService.busqueda=null;
      })
      texto.value=""
      
+}
+
+get busquedaSnipper(){
+  return this.weatherService.buscandoSpinner;
 }
 
 

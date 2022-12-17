@@ -9,6 +9,7 @@ export class NavBarComponent {
   
   cambiarEstilos(){
     console.log('Click')
+    document.body.classList.toggle("night-mode");
   }
 
 }
