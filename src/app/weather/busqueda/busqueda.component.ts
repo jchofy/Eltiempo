@@ -37,7 +37,4 @@ get busquedaSnipper(){
   return this.weatherService.buscandoSpinner;
 }
 
-
-
-
 }

@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Weather } from '../interface/weather';
+import { WeatherDetalles } from '../interface/weatherDetalles';
 import { WeatherservicesService } from '../services/weather.service';
 
 @Component({
@@ -10,17 +11,42 @@ import { WeatherservicesService } from '../services/weather.service';
 })
 
 export class InformacionDetalladaComponent implements OnInit {
+
   dia:string="";
-  busquedaDetallada:any;
+  busquedaDetallada!:WeatherDetalles;
+  busquedaDetalladaPrimerDia: any[]=[];
+  busquedaDetalladaSegundoDia: any[]=[];
+  busquedaDetalladaTercerDia: any[]=[];
+  busquedaDetalladaCuartoDia: any[]=[];
+
+
 
   constructor(private weatherService:WeatherservicesService,private activeRouting:ActivatedRoute) {  
   }
+  
+
+establecerHoratabla(){
+  let  vecesPrimerdia;
+  let numero = parseInt((this.busquedaDetallada.list[0].dt_txt).toString().substring(11,13));
+  vecesPrimerdia=((24-numero)/3);
+  this.busquedaDetalladaPrimerDia = this.busquedaDetallada.list.slice(0,vecesPrimerdia);
+  this.busquedaDetalladaSegundoDia = this.busquedaDetallada.list.slice(vecesPrimerdia,vecesPrimerdia+8);
+  this.busquedaDetalladaTercerDia = this.busquedaDetallada.list.slice(vecesPrimerdia+8,vecesPrimerdia+16);
+  this.busquedaDetalladaCuartoDia = this.busquedaDetallada.list.slice(vecesPrimerdia+16,vecesPrimerdia+24);
+
+}
+
+cambiaImagen(numero:string):string{
+  let cadena = "../../../assets/Iconos/"+numero+".png";
+  return cadena;
+}
+
 
   ngOnInit() {
     this.activeRouting.params.subscribe(({nombre})=>{
       this.weatherService.buscarDetalles(nombre).subscribe((respuesta)=>{
         this.busquedaDetallada=respuesta;
-        console.log(this.busquedaDetallada)
+        this.establecerHoratabla();
       })
   })
   
@@ -38,9 +64,9 @@ tofixed(number:any):string{
 return number.toString().substring(0,1)
 }
 
-  obtenerDia(fecha:Date):string | undefined{
+  obtenerDia():string | undefined{
     let dia="";
-    let fechaDia = new Date(fecha);
+    let fechaDia = new Date();
     switch(fechaDia.getDay()){
       case 1:dia="Lunes";
       break;

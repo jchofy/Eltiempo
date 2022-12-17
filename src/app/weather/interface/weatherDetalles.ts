@@ -30,7 +30,7 @@ export interface List {
     wind:       Wind;
     visibility: number;
     pop:        number;
-    rain?:      Rain;
+    rain:      Rain;
     sys:        Sys;
     dt_txt:     Date;
 }

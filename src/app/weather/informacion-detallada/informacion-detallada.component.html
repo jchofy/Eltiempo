@@ -1,5 +1,111 @@
+<div class="mb-5" *ngIf="busquedaDetallada" >
+  <h3 class="text-center">El tiempo en {{busquedaDetallada.city.name}}</h3>
+  <p class="text-center">Los próximos 4 días</p>
+</div>
 <div class="d-flex justify-content-center" *ngIf="busquedaDetallada">
-  <p>{{busquedaDetallada.list[0].dt_txt}}</p>
+  
+    <div class="accordion w-75" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Hoy
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div>
+              <table class="table w-100">
+                <tr class="d-flex w-100"><td><p><i class="bi bi-clock"></i></p><p><i class="bi bi-wind"></i></p><p><i class="bi bi-sun text-warning"></i></p><p><i class="bi bi-droplet-fill text-info"></i></p><p><i class="bi bi-thermometer-half text-danger"></i></p><p><i class="bi bi-thermometer-half text-primary"></i></p></td>
+                <td *ngFor="let item of busquedaDetalladaPrimerDia">
+                  <p class="text-center">{{item.dt_txt.toString().substring(11,13)}}</p>
+                  <p class="text-center">{{(item.wind.speed).toFixed(0)}}<span>km/h</span></p>
+                  <p class="text-center"><img width="25px" src={{cambiaImagen(item.weather[0].icon)}} alt=""></p>
+                  <p class="text-center">{{(item.rain)? item.rain['3h']:"0"}}<span> ml</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_max)}}<span> ºc</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_min)}}<span> ºc</span></p>
+                </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Mañana
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div>
+              <table class="table table-striped w-100">
+                <tr class="d-flex w-100"><td><p><i class="bi bi-clock"></i></p><p><i class="bi bi-wind"></i></p><p><i class="bi bi-sun text-warning"></i></p><p><i class="bi bi-droplet-fill text-info"></i></p><p><i class="bi bi-thermometer-half text-danger"></i></p><p><i class="bi bi-thermometer-half text-primary"></i></p></td>
+                <td *ngFor="let item of busquedaDetalladaSegundoDia">
+                  <p class="text-center">{{item.dt_txt.toString().substring(11,13)}}</p>
+                  <p class="text-center">{{(item.wind.speed).toFixed(0)}}<span>km/h</span></p>
+                  <p class="text-center"><img width="25px" src={{cambiaImagen(item.weather[0].icon)}} alt=""></p>
+                  <p class="text-center">{{(item.rain)? item.rain['3h']:"0"}}<span> ml</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_max)}}<span> ºc</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_min)}}<span> ºc</span></p>
+                </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            {{busquedaDetalladaTercerDia[0].dt_txt.substring(0,10)}}
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div>
+              <table class="table w-100">
+                <tr class="d-flex w-100"><td><p><i class="bi bi-clock"></i></p><p><i class="bi bi-wind"></i></p><p><i class="bi bi-sun text-warning"></i></p><p><i class="bi bi-droplet-fill text-info"></i></p><p><i class="bi bi-thermometer-half text-danger"></i></p><p><i class="bi bi-thermometer-half text-primary"></i></p></td>
+                <td *ngFor="let item of busquedaDetalladaTercerDia">
+                  <p class="text-center">{{item.dt_txt.toString().substring(11,13)}}</p>
+                  <p class="text-center">{{(item.wind.speed).toFixed(0)}}<span>km/h</span></p>
+                  <p class="text-center"><img width="25px" src={{cambiaImagen(item.weather[0].icon)}} alt=""></p>
+                  <p class="text-center">{{(item.rain)? item.rain['3h']:"0"}}<span> ml</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_max)}}<span> ºc</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_min)}}<span> ºc</span></p>
+                </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            {{busquedaDetalladaCuartoDia[0].dt_txt.substring(0,10)}}
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div>
+              <table class="table w-100">
+                <tr class="d-flex w-100"><td><p><i class="bi bi-clock"></i></p><p><i class="bi bi-wind"></i></p><p><i class="bi bi-sun text-warning"></i></p><p><i class="bi bi-droplet-fill text-info"></i></p><p><i class="bi bi-thermometer-half text-danger"></i></p><p><i class="bi bi-thermometer-half text-primary"></i></p></td>
+                <td *ngFor="let item of busquedaDetalladaCuartoDia">
+                  <p class="text-center">{{item.dt_txt.toString().substring(11,13)}}</p>
+                  <p class="text-center">{{(item.wind.speed).toFixed(0)}}<span>km/h</span></p>
+                  <p class="text-center"><img width="25px" src={{cambiaImagen(item.weather[0].icon)}} alt=""></p>
+                  <p class="text-center">{{(item.rain)? item.rain['3h']:"0"}}<span> ml</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_max)}}<span> ºc</span></p>
+                  <p class="text-center">{{convierteGrados(item.main.temp_min)}}<span> ºc</span></p>
+                </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
     
